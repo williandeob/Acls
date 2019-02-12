@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.itecbrazil.acls.repository.UsuarioDao">
+    <select id="findById" resultMap="usuario">
+	SELECT
+            A.CD_USU
+        FROM GLB_USU A
+        WHERE A.CD_USU = #{cdUsu}
+    </select>
+    
+    <select id="getRoles" resultMap="role">
+	SELECT
+        
+            D.CD_CTR,
+            D.[DESC]
+        
+        FROM GLB_USU A
+        LEFT JOIN GLB_USU_GRP B ON 
+            A.CD_USU = B.CD_USU
+        LEFT JOIN GLB_GRP_USU_GLB_FUNCIONALIDADE C ON
+                B.CD_GRP = C.CD_GRP
+        LEFT JOIN GLB_FUNCIONALIDADE D ON
+                D.CD_CTR = C.CD_FUNCIONALIDADE
+        
+        WHERE A.CD_USU = #{cdUsu} AND [STATUS] = 0
+    </select>
+        
+    <resultMap type="com.itecbrazil.acls.model.Usuario" id="usuario">
+        <result property="cdUsu" column="CD_USU" javaType="int"/>
+        <collection property="roles" column="{cdUsu = CD_USU}" javaType="ArrayList" ofType="map" select="getRoles" />
+    </resultMap>
+    
+     <resultMap type="com.itecbrazil.acls.model.Role" id="role">
+        <result property="cdCtr" column="CD_CTR" javaType="int"/>
+        <result property="desc" column="DESC" javaType="String"/>
+    </resultMap>
+</mapper>

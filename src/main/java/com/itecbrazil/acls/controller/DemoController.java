@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Itec
  */
 @RestController
-@RequestMapping("/pessoa")
-public class PessoaController {
+@RequestMapping("/demo")
+public class DemoController {
     
     @RequestMapping("/getNome")
     public String getNome() {
-       return "Willian Batista";
+       return "Demo";
     }
 }

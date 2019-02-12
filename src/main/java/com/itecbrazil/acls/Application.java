@@ -5,6 +5,7 @@
  */
 package com.itecbrazil.acls;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +15,8 @@ import org.springframework.context.annotation.ComponentScan;
  * @author Itec
  */
 @SpringBootApplication
-@ComponentScan(basePackages = "${packagesLogin},${packagesLocal}")
+@MapperScan(basePackages = "com.itecbrazil.acls.repository")
+@ComponentScan(basePackages = "itec.security.auth.login, com.itecbrazil.acls")
 public class Application {
 
     /**
