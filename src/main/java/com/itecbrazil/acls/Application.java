@@ -7,12 +7,14 @@ package com.itecbrazil.acls;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  *
  * @author Itec
  */
 @SpringBootApplication
+@ComponentScan(basePackages = "${packagesLogin},${packagesLocal}")
 public class Application {
 
     /**

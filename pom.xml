@@ -32,7 +32,23 @@
             <artifactId>json-path</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>itec.auth.login</groupId>
+            <artifactId>itec-auth</artifactId>
+            <version>9.1-RELEASE</version>
+        </dependency>
     </dependencies>
+    
+    <repositories>
+        <repository>
+            <id>convergencia</id>
+            <url>http://nexus.itecdomain.com.br/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>itec-auth</id>
+            <url>http://nexus.itecdomain.com.br/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
     
     <build>
         <plugins>

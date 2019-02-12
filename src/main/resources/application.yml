@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver    
+    url: jdbc:sqlserver://40.87.55.179:50559;databaseName=NossaFarmaciaProducao
+    username: linx.farma_cloud
+    password: 7TBkPOP04YCOl9lNsDrD
+  profiles:
+    active: prod
+
+authViewLocation: https://api.itecdomain.com.br/login
+redirectUri: http://localhost:8081
+clientId: acme
+clientSecret: acmesecret
+authServerUri: https://api.itecdomain.com.br/auth/oauth
+  
+mybatis:
+    config-location: classpath:mybatis-config.xml
+
+server:
+  port: 8081
+  
+linxfarmacloud:
+  swagger:
+    path: localhost:8081
+schemas:
+ path: classpath:schemas/
+
+packagesLogin: itec.security.auth.login
+packagesLocal: com.itecbrazil.acls 
