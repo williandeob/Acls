@@ -3,38 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.itecbrazil.acls.security;
+package com.itecbrazil.acls.service;
 
 import com.itecbrazil.acls.model.Usuario;
 import com.itecbrazil.acls.repository.UsuarioDao;
-import itec.security.auth.login.AuthScope;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Itec
  */
-@Service
+@Component
 public class ImplementsUserDetailsServices implements UserDetailsService{
 
     @Autowired
     private UsuarioDao usuarioDao;
-    
-    @Autowired
-    private AuthScope authScope;
      
     @Override
-    public UserDetails loadUserByUsername(String string) throws UsernameNotFoundException {
-        Usuario usuario = usuarioDao.findById((int)authScope.getToken().get("cdUsu"));
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        Usuario usuario = usuarioDao.findById(Integer.parseInt(login));
         if(usuario == null)
             throw new UsernameNotFoundException("Usuario não encontrado!");
 
-        return new User(usuario.getUsername(), usuario.getPassword(), usuario.isEnabled(), usuario.isAccountNonExpired(), usuario.isCredentialsNonExpired(), usuario.isAccountNonLocked(), usuario.getAuthorities());
+        return usuario;
     }
     
 }

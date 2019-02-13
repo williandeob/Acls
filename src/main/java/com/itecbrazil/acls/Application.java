@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @MapperScan(basePackages = "com.itecbrazil.acls.repository")
-@ComponentScan(basePackages = "itec.security.auth.login, com.itecbrazil.acls")
+@ComponentScan(basePackages = "com.itecbrazil.acls")
 public class Application {
 
     /**

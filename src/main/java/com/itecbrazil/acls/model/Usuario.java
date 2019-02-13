@@ -17,16 +17,46 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class Usuario implements UserDetails{
     
     private int cdUsu;
+    private String senha;
+    private String login;
+    private String nmUsu;
+    
     private List<Role> roles;
-
+    
     public int getCdUsu() {
-        return cdUsu;
+        return this.cdUsu;
     }
 
     public void setCdUsu(int cdUsu) {
         this.cdUsu = cdUsu;
     }
 
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    public void setPassword(String senha) {
+        this.senha = senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.login;
+    }
+
+    public void setUsername(String login) {
+        this.login = login;
+    }
+    
+    public String getNmUsu() {
+        return this.nmUsu;
+    }
+
+    public void setNmUsu(String nmUsu) {
+        this.nmUsu = nmUsu;
+    }
+ 
     public List<Role> getRoles() {
         return roles;
     }
@@ -38,16 +68,6 @@ public class Usuario implements UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
-    }
-
-    @Override
-    public String getPassword() {
-        return "";
-    }
-
-    @Override
-    public String getUsername() {
-        return "";
     }
 
     @Override

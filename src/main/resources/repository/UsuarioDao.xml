@@ -7,7 +7,9 @@
 <mapper namespace="com.itecbrazil.acls.repository.UsuarioDao">
     <select id="findById" resultMap="usuario">
 	SELECT
-            A.CD_USU
+            A.CD_USU,
+            A.SENHA,
+            A.NM_USU
         FROM GLB_USU A
         WHERE A.CD_USU = #{cdUsu}
     </select>
@@ -31,7 +33,10 @@
         
     <resultMap type="com.itecbrazil.acls.model.Usuario" id="usuario">
         <result property="cdUsu" column="CD_USU" javaType="int"/>
-        <collection property="roles" column="{cdUsu = CD_USU}" javaType="ArrayList" ofType="map" select="getRoles" />
+        <result property="login" column="CD_USU" javaType="String"/>
+        <result property="senha" column="SENHA" javaType="String"/>
+        <result property="nmUsu" column="NM_USU" javaType="String"/>
+        <collection property="roles" column="{cdUsu = CD_USU}" javaType="ArrayList" select="getRoles" />
     </resultMap>
     
      <resultMap type="com.itecbrazil.acls.model.Role" id="role">
